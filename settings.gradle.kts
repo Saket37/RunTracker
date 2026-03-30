@@ -21,8 +21,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "Run Tracker App"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+rootProject.name = "RunTrackerApp"
 include(":app")
 include(":auth:data")
 include(":auth:domain")
