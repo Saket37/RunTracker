@@ -12,8 +12,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         target.run {
             pluginManager.run {
                 apply("com.android.application")
-//                if (!hasPlugin("org.jetbrains.kotlin.android")) {
-               // apply("org.jetbrains.kotlin.android")
+//                if (!pluginManager.hasPlugin("org.jetbrains.kotlin.android")) {
+//                    apply("org.jetbrains.kotlin.android")
 //                }
             }
             extensions.configure<ApplicationExtension> {
@@ -24,10 +24,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     versionName = libs.findVersion("projectVersionName").get().toString()
                 }
                 configureKotlinAndroid(this@configure)
-//                configureBuildTypes(
-//                    commonExtension = this,
-//                    extensionType = ExtensionType.APPLICATION
-//                )
+                configureBuildTypes(
+                    commonExtension = this,
+                    extensionType = ExtensionType.APPLICATION
+                )
             }
         }
     }

@@ -12,11 +12,11 @@ kotlin {
 }
 dependencies {
     // using compileOnly so that it only runs during compile time
-    compileOnly(libs.android.gradlePlugin)
-    compileOnly(libs.android.tools.common)
-    compileOnly(libs.kotlin.gradlePlugin)
-    compileOnly(libs.ksp.gradlePlugin)
-    compileOnly(libs.room.gradlePlugin)
+    implementation(libs.android.gradlePlugin)
+    implementation(libs.android.tools.common)
+    implementation(libs.kotlin.gradlePlugin)
+    implementation(libs.ksp.gradlePlugin)
+    implementation(libs.room.gradlePlugin)
 }
 
 gradlePlugin {
@@ -29,6 +29,10 @@ gradlePlugin {
         register("androidApplicationCompose") {
             id = "runtracker.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
+        register("androidLibrary") {
+            id = "runtracker.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
         }
     }
 }

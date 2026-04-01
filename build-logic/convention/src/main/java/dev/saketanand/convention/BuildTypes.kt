@@ -6,7 +6,6 @@ import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.configure
 
 internal fun Project.configureBuildTypes(
     commonExtension: CommonExtension,
@@ -19,32 +18,30 @@ internal fun Project.configureBuildTypes(
         val apiKey = gradleLocalProperties(rootDir, providers).getProperty("API_KEY")
         when (extensionType) {
             ExtensionType.APPLICATION -> {
-                extensions.configure<ApplicationExtension> {
-                    buildTypes {
-                        debug {
-                            configureDebugBuildType(apiKey)
-                        }
+                (this as ApplicationExtension).buildTypes {
+                    debug {
+                        configureDebugBuildType(apiKey)
+                    }
 
-                        release {
-                            configureReleaseBuildType(apiKey, commonExtension)
-                        }
+                    release {
+                        configureReleaseBuildType(apiKey, commonExtension)
                     }
                 }
+
             }
 
             ExtensionType.LIBRARY -> {
-                extensions.configure<LibraryExtension> {
-                    buildTypes {
-                        debug {
-                            configureDebugBuildType(apiKey)
+                (this as LibraryExtension).buildTypes {
+                    debug {
+                        configureDebugBuildType(apiKey)
 
-                        }
+                    }
 
-                        release {
-                            configureReleaseBuildType(apiKey, commonExtension)
-                        }
+                    release {
+                        configureReleaseBuildType(apiKey, commonExtension)
                     }
                 }
+
             }
         }
 
