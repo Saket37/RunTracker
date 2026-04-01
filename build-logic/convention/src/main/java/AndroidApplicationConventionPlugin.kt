@@ -1,4 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
+import dev.saketanand.convention.ExtensionType
+import dev.saketanand.convention.configureBuildTypes
 import dev.saketanand.convention.configureKotlinAndroid
 import dev.saketanand.convention.libs
 import org.gradle.api.Plugin
@@ -11,7 +13,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             pluginManager.run {
                 apply("com.android.application")
 //                if (!hasPlugin("org.jetbrains.kotlin.android")) {
-//                    apply("org.jetbrains.kotlin.android")
+               // apply("org.jetbrains.kotlin.android")
 //                }
             }
             extensions.configure<ApplicationExtension> {
@@ -20,8 +22,12 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     targetSdk = libs.findVersion("projectTargetSdkVersion").get().toString().toInt()
                     versionCode = libs.findVersion("projectVersionCode").get().toString().toInt()
                     versionName = libs.findVersion("projectVersionName").get().toString()
-                    configureKotlinAndroid(this@configure)
                 }
+                configureKotlinAndroid(this@configure)
+//                configureBuildTypes(
+//                    commonExtension = this,
+//                    extensionType = ExtensionType.APPLICATION
+//                )
             }
         }
     }
