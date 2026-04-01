@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.runtracker.android.application.compose)
-    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.runtracker.jvm.ktor)
 }
 
 android {
@@ -11,20 +11,6 @@ android {
 //        }
 //    }
 
-    defaultConfig {
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
 
     buildFeatures {
         compose = true

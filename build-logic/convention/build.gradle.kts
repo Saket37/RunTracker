@@ -12,11 +12,11 @@ kotlin {
 }
 dependencies {
     // using compileOnly so that it only runs during compile time
-    implementation(libs.android.gradlePlugin)
-    implementation(libs.android.tools.common)
-    implementation(libs.kotlin.gradlePlugin)
-    implementation(libs.ksp.gradlePlugin)
-    implementation(libs.room.gradlePlugin)
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.android.tools.common)
+    compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.ksp.gradlePlugin)
+    compileOnly(libs.room.gradlePlugin)
 }
 
 gradlePlugin {
@@ -43,6 +43,18 @@ gradlePlugin {
         register("androidFeatureUi") {
             id = "runtracker.android.feature.ui"
             implementationClass = "AndroidFeatureUiConventionPlugin"
+        }
+        register("androidRoom") {
+            id = "runtracker.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
+        }
+        register("jvmLibrary") {
+            id = "runtracker.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
+        register("jvmKtor") {
+            id = "runtracker.jvm.ktor"
+            implementationClass = "JvmKtorConventionPlugin"
         }
     }
 }
