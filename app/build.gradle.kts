@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.runtracker.android.application)
+    alias(libs.plugins.runtracker.android.application.compose)
     alias(libs.plugins.compose.compiler)
 }
 
