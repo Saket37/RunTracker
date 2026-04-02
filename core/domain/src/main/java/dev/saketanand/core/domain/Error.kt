@@ -1,4 +1,3 @@
 package dev.saketanand.core.domain
 
-class MyClass {
-}
+interface Error
