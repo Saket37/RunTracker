@@ -10,6 +10,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.invoke
 
 internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension

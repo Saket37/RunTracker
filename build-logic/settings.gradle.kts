@@ -2,6 +2,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 
     // as we need to identify the version catalogs

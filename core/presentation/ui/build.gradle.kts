@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.runtracker.android.library.compose) // using a library compose plugin as we dont need to include any other dependencies for it
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
