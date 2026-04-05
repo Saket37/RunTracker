@@ -1,9 +1,12 @@
 package dev.saketanand.auth.data.di
 
+import dev.saketanand.auth.data.AuthRepositoryImpl
 import dev.saketanand.auth.data.EmailPatternValidator
+import dev.saketanand.auth.domain.AuthRepository
 import dev.saketanand.auth.domain.PatternValidator
 import dev.saketanand.auth.domain.UserDataValidator
 import org.koin.core.module.dsl.singleOf
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val authDataModule = module {
@@ -11,4 +14,7 @@ val authDataModule = module {
         EmailPatternValidator
     }
     singleOf(::UserDataValidator)
+
+    singleOf(::AuthRepositoryImpl).bind<AuthRepository>()
+
 }
