@@ -8,12 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun VerticalGap(modifier: Modifier = Modifier, height: Dp) {
-    Spacer(modifier = modifier.height(height))
+fun VerticalGap(height: Dp) {
+    Spacer(modifier = Modifier.height(height))
 
 }
 
 @Composable
-fun HorizontalGap(modifier: Modifier = Modifier, width: Dp) {
-    Spacer(modifier = modifier.width(width))
+fun HorizontalGap(width: Dp) {
+    Spacer(modifier = Modifier.width(width))
 }
