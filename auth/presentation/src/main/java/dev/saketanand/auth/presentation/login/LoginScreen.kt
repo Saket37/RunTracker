@@ -20,6 +20,7 @@ import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -103,7 +104,8 @@ private fun LoginScreen(
                 endIcon = null,
                 hint = stringResource(R.string.example_email),
                 title = stringResource(R.string.email),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                keyboardType = KeyboardType.Email
             )
             VerticalGap(16.dp)
             RunTrackerPasswordTextField(
@@ -121,7 +123,7 @@ private fun LoginScreen(
             ActionButton(
                 text = stringResource(R.string.login),
                 isLoading = state.isLoggingIn,
-                enabled = state.canLogin,
+                enabled = state.canLogin && !state.isLoggingIn,
                 onClick = {
                     onAction(LoginAction.OnLoginClicked)
                 }
