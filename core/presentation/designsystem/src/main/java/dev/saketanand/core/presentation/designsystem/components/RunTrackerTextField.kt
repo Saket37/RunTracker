@@ -66,7 +66,11 @@ fun RunTrackerTextField(
                 )
             }
             if (error != null) {
-                Text(error, color = MaterialTheme.colorScheme.error, fontSize = 12.sp)
+                Text(
+                    error,
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp
+                )
             } else if (additionalInfo != null) {
                 Text(
                     additionalInfo,
@@ -89,7 +93,7 @@ fun RunTrackerTextField(
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
                 .background(
-                    if (isFocused) MaterialTheme.colorScheme.primary.copy(alpha = 0.5f) else MaterialTheme.colorScheme.surface
+                    if (isFocused) MaterialTheme.colorScheme.primary.copy(alpha = 0.05f) else MaterialTheme.colorScheme.surface
                 )
                 .border(
                     width = 1.dp,

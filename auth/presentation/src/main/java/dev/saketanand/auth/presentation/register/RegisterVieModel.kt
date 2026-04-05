@@ -32,7 +32,10 @@ class RegisterVieModel(
         snapshotFlow { state.email.text }
             .map { it.toString() }.distinctUntilChanged().debounce(500L).onEach {
                 val isValid = userDataValidator.isValidEmail(it)
-                state = state.copy(isEmailValid = isValid)
+                state = state.copy(
+                    isEmailValid = isValid,
+                    canRegister = isValid && state.passwordValidationState.isValidPassword && !state.isRegistering
+                )
             }
             .launchIn(viewModelScope)
     }
@@ -40,8 +43,11 @@ class RegisterVieModel(
     private fun observePasswordChange() {
         snapshotFlow { state.password.text }
             .map { it.toString() }.distinctUntilChanged().debounce(500L).onEach { password ->
+                val passwordValidationState = userDataValidator.validatePassword(password)
                 state = state.copy(
-                    passwordValidationState = userDataValidator.validatePassword(password)
+                    passwordValidationState = passwordValidationState,
+                    canRegister = state.isEmailValid && passwordValidationState.isValidPassword && !state.isRegistering
+
                 )
             }
             .launchIn(viewModelScope)
