@@ -1,6 +1,5 @@
 package dev.saketanand.runtrackerapp
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -10,6 +9,7 @@ import androidx.navigation.navigation
 import dev.saketanand.auth.presentation.into.IntroScreenRoot
 import dev.saketanand.auth.presentation.login.LoginScreenRoot
 import dev.saketanand.auth.presentation.register.RegisterScreenRoot
+import dev.saketanand.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
 fun NavigationRoot(
@@ -31,7 +31,7 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable("run_overview") {
-            Text("Hey")
+            RunOverviewScreenRoot()
         }
 
     }
