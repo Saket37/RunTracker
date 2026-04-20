@@ -9,6 +9,7 @@ import androidx.navigation.navigation
 import dev.saketanand.auth.presentation.into.IntroScreenRoot
 import dev.saketanand.auth.presentation.login.LoginScreenRoot
 import dev.saketanand.auth.presentation.register.RegisterScreenRoot
+import dev.saketanand.run.presentation.active_run.ActiveRunScreenRoot
 import dev.saketanand.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -31,7 +32,14 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
         route = "run"
     ) {
         composable("run_overview") {
-            RunOverviewScreenRoot()
+            RunOverviewScreenRoot(
+                onStartRunClick = {
+                    navController.navigate("active_run")
+                }
+            )
+        }
+        composable("active_run") {
+            ActiveRunScreenRoot()
         }
 
     }

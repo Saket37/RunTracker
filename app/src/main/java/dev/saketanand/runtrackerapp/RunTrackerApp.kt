@@ -4,6 +4,7 @@ import android.app.Application
 import dev.saketanand.auth.data.di.authDataModule
 import dev.saketanand.auth.presentation.di.authViewModelModule
 import dev.saketanand.core.data.di.coreDataModule
+import dev.saketanand.run.presentation.di.runViewModelModule
 import dev.saketanand.runtrackerapp.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -22,7 +23,7 @@ class RunTrackerApp : Application() {
             androidLogger()
             androidContext(this@RunTrackerApp)
             modules(
-                authDataModule, authViewModelModule, appModule, coreDataModule
+                authDataModule, authViewModelModule, appModule, coreDataModule, runViewModelModule
             )
         }
     }
