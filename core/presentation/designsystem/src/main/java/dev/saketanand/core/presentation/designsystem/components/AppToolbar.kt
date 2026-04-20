@@ -42,7 +42,7 @@ fun AppToolbar(
     menuItems: List<DropDownItem> = emptyList(),
     onMenuItemClick: (Int) -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = TopAppBarDefaults.enterAlwaysScrollBehavior(),
-    startContent: @Composable () -> Unit
+    startContent: @Composable () -> Unit={}
 ) {
 
     var isDropDownOpen by rememberSaveable {

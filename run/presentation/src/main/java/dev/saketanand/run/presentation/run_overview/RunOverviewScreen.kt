@@ -28,7 +28,7 @@ fun RunOverviewScreenRoot(
     viewModel: RunOverviewViewModel = koinViewModel()
 ) {
     RunOverviewScreen(
-        onAction = {}
+        onAction = viewModel::onAction
     )
 }
 
