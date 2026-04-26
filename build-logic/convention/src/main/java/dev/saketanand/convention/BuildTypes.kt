@@ -50,14 +50,14 @@ internal fun Project.configureBuildTypes(
 
 private fun BuildType.configureDebugBuildType(apiKey: String) {
     buildConfigField("String", "API_KEY", "\"$apiKey\"")
-    buildConfigField("String", "BASE_URL", "\"http://192.168.0.14:8080\"")
+    buildConfigField("String", "BASE_URL", "\"http://192.168.0.19:8080\"")
 
     manifestPlaceholders["networkSecurityConfig"] = "@xml/network_security_config"
 }
 
 private fun BuildType.configureReleaseBuildType(apiKey: String, commonExtension: CommonExtension) {
     buildConfigField("String", "API_KEY", "\"$apiKey\"")
-    buildConfigField("String", "BASE_URL", "\"http://192.168.0.14:8080\"")
+    buildConfigField("String", "BASE_URL", "\"http://192.168.0.19:8080\"")
 
     isMinifyEnabled = false
     proguardFiles(
