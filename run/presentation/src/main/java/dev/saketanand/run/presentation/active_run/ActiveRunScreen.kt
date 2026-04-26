@@ -31,6 +31,7 @@ import dev.saketanand.core.presentation.designsystem.components.RunTrackerDialog
 import dev.saketanand.core.presentation.designsystem.components.RunTrackerScaffold
 import dev.saketanand.run.presentation.R
 import dev.saketanand.run.presentation.active_run.component.RunDataCard
+import dev.saketanand.run.presentation.active_run.maps.TrackerMap
 import dev.saketanand.run.presentation.util.hasLocationPermission
 import dev.saketanand.run.presentation.util.hasNotificationPermission
 import dev.saketanand.run.presentation.util.shouldShowLocationPermissionRationale
@@ -101,7 +102,7 @@ private fun ActiveRunScreen(state: ActiveRunState, onAction: (ActiveRunAction) -
             )
         )
 
-        if (!showLocationRationale && !showNotificationRationale){
+        if (!showLocationRationale && !showNotificationRationale) {
             permissionLauncher.requestPermissions(context)
         }
     }
@@ -131,6 +132,12 @@ private fun ActiveRunScreen(state: ActiveRunState, onAction: (ActiveRunAction) -
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.surface)
             ) {
+                TrackerMap(
+                    isRunFinished = state.isRunFinished,
+                    currentLocation = state.currentLocation,
+                    locations = state.runData.locations,
+                    modifier = Modifier.fillMaxSize()
+                ) { }
                 RunDataCard(
                     runData = state.runData,
                     elapsedTime = state.elapsedTime,
