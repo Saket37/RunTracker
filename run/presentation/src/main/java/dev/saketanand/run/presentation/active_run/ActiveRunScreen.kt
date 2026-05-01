@@ -33,6 +33,7 @@ import dev.saketanand.core.presentation.designsystem.components.RunTrackerScaffo
 import dev.saketanand.run.presentation.R
 import dev.saketanand.run.presentation.active_run.component.RunDataCard
 import dev.saketanand.run.presentation.active_run.maps.TrackerMap
+import dev.saketanand.run.presentation.active_run.service.ActiveRunService
 import dev.saketanand.run.presentation.util.hasLocationPermission
 import dev.saketanand.run.presentation.util.hasNotificationPermission
 import dev.saketanand.run.presentation.util.shouldShowLocationPermissionRationale
@@ -41,17 +42,23 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun ActiveRunScreenRoot(
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
     viewModel: ActiveRunViewModel = koinViewModel()
 ) {
     ActiveRunScreen(
         state = viewModel.state,
+        onServiceToggle = onServiceToggle,
         onAction = viewModel::onAction
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun ActiveRunScreen(state: ActiveRunState, onAction: (ActiveRunAction) -> Unit) {
+private fun ActiveRunScreen(
+    state: ActiveRunState,
+    onServiceToggle: (isServiceRunning: Boolean) -> Unit,
+    onAction: (ActiveRunAction) -> Unit
+) {
 
     val context = LocalContext.current
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -107,6 +114,16 @@ private fun ActiveRunScreen(state: ActiveRunState, onAction: (ActiveRunAction) -
             permissionLauncher.requestPermissions(context)
         }
     }
+    LaunchedEffect(state.shouldTrack) {
+        if (context.hasLocationPermission() && state.shouldTrack && !ActiveRunService.isServiceActive) {
+            onServiceToggle(true)
+        }
+    }
+
+    LaunchedEffect(state.isRunFinished) {
+        if (state.isRunFinished) onServiceToggle(false)
+    }
+
     RunTrackerScaffold(
         withGradient = false,
         topAppBar = {
@@ -226,7 +243,7 @@ private fun ActivityResultLauncher<Array<String>>.requestPermissions(
 @Composable
 private fun ActionRunScreenPreview() {
     RunTrackerTheme {
-        ActiveRunScreen(state = ActiveRunState(), onAction = {})
+        ActiveRunScreen(state = ActiveRunState(), onAction = {}, onServiceToggle = {})
     }
 
 }
