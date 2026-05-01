@@ -57,6 +57,7 @@ fun RunDataCard(modifier: Modifier = Modifier, runData: RunData, elapsedTime: Du
                 value = (runData.distanceInMeters / 1000.0).toFormattedKms(),
                 modifier = Modifier.defaultMinSize(minWidth = 75.dp)
             )
+
             RunDataItem(
                 title = stringResource(R.string.pace),
                 value = elapsedTime.toFormattedPace(

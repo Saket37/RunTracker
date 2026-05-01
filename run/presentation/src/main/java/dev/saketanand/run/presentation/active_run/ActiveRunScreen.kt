@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import dev.saketanand.core.presentation.designsystem.RunTrackerTheme
 import dev.saketanand.core.presentation.designsystem.StartIcon
 import dev.saketanand.core.presentation.designsystem.StopIcon
+import dev.saketanand.core.presentation.designsystem.components.ActionButton
 import dev.saketanand.core.presentation.designsystem.components.AppFloatingActioButton
 import dev.saketanand.core.presentation.designsystem.components.AppToolbar
 import dev.saketanand.core.presentation.designsystem.components.OutlineActionButton
@@ -150,6 +151,34 @@ private fun ActiveRunScreen(state: ActiveRunState, onAction: (ActiveRunAction) -
         }
 
     )
+    if (!state.shouldTrack && state.hasStartedRunning) {
+        RunTrackerDialog(
+            title = stringResource(R.string.running_is_paused),
+            onDismiss = {
+                onAction(ActiveRunAction.OnResumeRunClick)
+            },
+            description = stringResource(R.string.resume_or_finish_run),
+            primaryButton = {
+                ActionButton(
+                    text = stringResource(R.string.resume),
+                    isLoading = false,
+                    modifier = Modifier.weight(1f)
+
+                ) {
+                    onAction(ActiveRunAction.OnResumeRunClick)
+                }
+            },
+            secondaryButton = {
+                OutlineActionButton(
+                    text = stringResource(R.string.finish),
+                    isLoading = state.isSavingRun,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    onAction(ActiveRunAction.OnFinishedRunClick)
+                }
+            }
+        )
+    }
 
     if (state.showLocationRationale || state.showNotificationRationale) {
         RunTrackerDialog(

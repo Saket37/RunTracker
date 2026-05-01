@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.runtracker.android.application.compose)
     alias(libs.plugins.runtracker.jvm.ktor)
     alias(libs.plugins.compose.compiler)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {

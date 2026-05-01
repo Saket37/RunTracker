@@ -27,7 +27,7 @@ fun Duration.toFormattedPace(distanceKms: Double): String {
     val secondsPerKm = (this.inWholeSeconds / distanceKms).roundToInt()
     val avgPacePerMin = secondsPerKm / 60
 
-    val avgPaceSeconds = String.format(Locale.US, "%20d", secondsPerKm % 60)
+    val avgPaceSeconds = String.format(Locale.US, "%02d", secondsPerKm % 60)
 
     return "$avgPacePerMin:$avgPaceSeconds / Km"
 
