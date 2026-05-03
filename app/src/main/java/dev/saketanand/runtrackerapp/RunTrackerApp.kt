@@ -4,6 +4,7 @@ import android.app.Application
 import dev.saketanand.auth.data.di.authDataModule
 import dev.saketanand.auth.presentation.di.authViewModelModule
 import dev.saketanand.core.data.di.coreDataModule
+import dev.saketanand.core.database.di.databaseModule
 import dev.saketanand.run.location.di.locationModule
 import dev.saketanand.run.presentation.di.runPresentationModule
 import dev.saketanand.runtrackerapp.di.appModule
@@ -28,8 +29,13 @@ class RunTrackerApp : Application() {
             androidLogger()
             androidContext(this@RunTrackerApp)
             modules(
-                authDataModule, authViewModelModule, appModule, coreDataModule, runPresentationModule,
-                locationModule
+                authDataModule,
+                authViewModelModule,
+                appModule,
+                coreDataModule,
+                runPresentationModule,
+                locationModule,
+                databaseModule
             )
         }
     }
